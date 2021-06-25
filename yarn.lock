@@ -2446,6 +2446,24 @@
     tiny-warning "^1.0.3"
     tslib "^2.1.0"
 
+"@redwoodjs/api-server@^0.34.1":
+  version "0.34.1"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/api-server/-/api-server-0.34.1.tgz#7c4e97e417b49f62222db68cf76f5cc059a7303e"
+  integrity sha512-Jwj7WDT18MAo9+XingK+oqPU/Tq++WVCoxFpgMAtgyQesJCcI8MChViuRiWy2Tu+xgrCNLRVmbFZK7wdPsdpZw==
+  dependencies:
+    body-parser "1.19.0"
+    chokidar "3.5.2"
+    dotenv-defaults "2.0.2"
+    express "4.17.1"
+    glob "7.1.7"
+    http-proxy-middleware "2.0.0"
+    lodash.escape "4.0.1"
+    morgan "1.10.0"
+    qs "6.9.3"
+    yargs "16.0.3"
+    youch "2.2.2"
+    youch-terminal "1.1.1"
+
 "@redwoodjs/api-server@^0.34.2-canary.28+2f5e40de":
   version "0.34.2-canary.28"
   resolved "https://registry.yarnpkg.com/@redwoodjs/api-server/-/api-server-0.34.2-canary.28.tgz#7cae7bd1f795eba6d9b25a118850f73b3d0b16be"
