@@ -1,3 +1,18 @@
 import { PrismaClient } from '@prisma/client'
 
-export const db = new PrismaClient()
+import {
+  emitLogLevels,
+  handlePrismaLogging,
+} from '@redwoodjs/graphql-server/logger'
+
+import { logger } from './logger'
+
+export const db = new PrismaClient({
+  log: emitLogLevels(['info', 'warn', 'error']),
+})
+
+handlePrismaLogging({
+  db,
+  logger,
+  logLevels: ['info', 'warn', 'error'],
+})
