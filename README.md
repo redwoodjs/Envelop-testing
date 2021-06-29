@@ -1,4 +1,4 @@
-# Todo
+# Envelop Testing: Using Example-Todo
 
 This is an example Redwood app, implementing a very minimal todo application.
 Features you can see in action here:
