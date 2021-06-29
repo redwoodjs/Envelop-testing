@@ -7,8 +7,10 @@ import {
 import schemas from 'src/graphql/**/*.{js,ts}'
 import services from 'src/services/**/*.{js,ts}'
 import { db } from 'src/lib/db'
+import { logger } from 'src/lib/logger'
 
 export const handler = createGraphQLHandler({
+  logger,
   schema: makeMergedSchema({
     schemas,
     services: makeServices({ services }),
@@ -16,5 +18,5 @@ export const handler = createGraphQLHandler({
   onException: () => {
     // Disconnect from your database with an unhandled exception.
     db.$disconnect()
-  }
+  },
 })
