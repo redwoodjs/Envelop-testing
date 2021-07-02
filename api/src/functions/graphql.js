@@ -10,7 +10,7 @@ import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
 
 export const handler = createGraphQLHandler({
-  logger,
+  loggerConfig: { logger, options: {} },
   schema: makeMergedSchema({
     schemas,
     services: makeServices({ services }),
