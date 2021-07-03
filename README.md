@@ -62,6 +62,68 @@ DATADOG_API_KEY
 
 in your local `.env` file.
 
+#### Identifying and logging testcases
+
+Since we want to compare the logs and trace timings across deployments (Netlify, Vercel, and Render) we can configure each deployed branch to
+send this info to DataDog for searching and faceting.
+
+```js
+/**
+
+ * Creates a synchronous pino-datadog stream
+ *
+ * @param {object} options - Datadog options including your account's API Key
+ *
+ * @typedef {DestinationStream}
+ */
+export const stream = datadog.createWriteStreamSync({
+  apiKey: process.env.DATADOG_API_KEY,
+  ddsource: 'main',
+  ddtags: 'main',
+  service: 'envelop-testing',
+  size: 1,
+})
+```
+
+We can set:
+
+- ddsource: the deployment (netlify, render, or cercel)
+- ddtags: the type of graphql (apollo or envelop)
+- service: to the branch name tested
+
+We'll do that also via envars.
+
+```js
+/**
+
+ * Creates a synchronous pino-datadog stream
+ *
+ * @param {object} options - Datadog options including your account's API Key
+ *
+ * @typedef {DestinationStream}
+ */
+export const stream = datadog.createWriteStreamSync({
+  apiKey: process.env.DATADOG_API_KEY,
+  ddsource: process.env.DATADOG_SOURCE,
+  ddtags: process.env.DATADOG_TAGS,
+  service: process.env.DATADOG_SERVICE,
+  size: 1,
+})
+```
+
+See `.env.defaults`.
+
+```
+# where deployed: develoomet, netlify, vercel, render
+DATADOG_SOURCE=development
+# which graphql: apollo or envelop
+DATADOG_TAGS=apollo
+# deployed branch name (netlify-envelop, render-apollo, etc)
+DATADOG_SERVICE=envelop-testing
+```
+
+Change these in your environment settings in each deployment.
+
 ### Fire it up
 
 ```terminal
