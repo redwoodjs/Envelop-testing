@@ -9,7 +9,6 @@ const isDataDogSetup =
   process.env.DATADOG_API_KEY && process.env.DATADOG_API_KEY !== ''
 
 /**
-
  * Creates a synchronous pino-datadog stream
  *
  * @param {object} options - Datadog options including your account's API Key
@@ -18,9 +17,9 @@ const isDataDogSetup =
  */
 export const stream = datadog.createWriteStreamSync({
   apiKey: process.env.DATADOG_API_KEY,
-  ddsource: 'main',
-  ddtags: 'main',
-  service: 'envelop-testing',
+  ddsource: process.env.DATADOG_SOURCE,
+  ddtags: process.env.DATADOG_TAGS,
+  service: process.env.DATADOG_SERVICE,
   size: 1,
 })
 
