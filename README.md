@@ -25,6 +25,43 @@ Set up the database and generate the database client:
 yarn redwood prisma migrate dev
 ```
 
+#### Logging
+
+Logging is enabled and configured in the GraphQL Handler and also setup to send to dataDog via a pino transport.
+
+##### GraphQL
+
+Logging the execution of the GraphQL resolvers is setup in `api/src/functions/graphql.js`.
+
+The `createGraphQLHandler` is setup to log data, userAgent, a requestId, and tracing info.
+
+```js
+export const handler = createGraphQLHandler({
+  loggerConfig: {
+    logger,
+    options: {
+      operationName: true,
+      userAgent: true,
+      data: true,
+      requestId: true,
+      tracing: true,
+    },
+  },
+  //...
+```
+
+##### DataDog
+
+Currently, if `DATADOG_API_KEY` is provided, the app will attempt to log to [DataDog](https://www.datadoghq.com/)
+
+If you want to test logging in development locally, then will need to setup a
+
+```
+DATADOG_API_KEY
+```
+
+in your local `.env` file.
+
 ### Fire it up
 
 ```terminal
