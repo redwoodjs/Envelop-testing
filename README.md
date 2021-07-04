@@ -173,7 +173,7 @@ But hardcode the `DATADOG_TAGS` in your logger configuration:
 export const stream = datadog.createWriteStreamSync({
   apiKey: process.env.DATADOG_API_KEY,
   ddsource: process.env.DATADOG_SOURCE,
-  ddtags: 'envelop',
+  ddtags: 'graphql-apollo',
   service: process.env.DATADOG_SERVICE,
   size: 1,
 })
