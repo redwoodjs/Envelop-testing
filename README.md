@@ -114,7 +114,7 @@ export const stream = datadog.createWriteStreamSync({
 See `.env.defaults`.
 
 ```
-# where deployed: develoomet, netlify, vercel, render
+# where deployed: development, netlify, vercel, render
 DATADOG_SOURCE=development
 # which graphql: apollo or envelop
 DATADOG_TAGS=apollo
@@ -123,6 +123,23 @@ DATADOG_SERVICE=envelop-testing
 ```
 
 Change these in your environment settings in each deployment.
+
+Note: For Netlify, functions only read from the UI dashboard set envars, so set:
+
+- DATADOG_SERVICE
+- DATADOG_SOURCE
+
+But hardcode the `DATADOG_TAGS` in your logger configuration:
+
+```js
+export const stream = datadog.createWriteStreamSync({
+  apiKey: process.env.DATADOG_API_KEY,
+  ddsource: process.env.DATADOG_SOURCE,
+  ddtags: 'envelop',
+  service: process.env.DATADOG_SERVICE,
+  size: 1,
+})
+```
 
 ### Fire it up
 
