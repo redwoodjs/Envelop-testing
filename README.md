@@ -117,7 +117,7 @@ See `.env.defaults`.
 # where deployed: develoomet, netlify, vercel, render
 DATADOG_SOURCE=development
 # which graphql: apollo or envelop
-DATADOG_TAGS=apollo
+DATADOG_TAGS=graphql-apollo
 # deployed branch name (netlify-envelop, render-apollo, etc)
 DATADOG_SERVICE=envelop-testing
 ```

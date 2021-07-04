@@ -18,7 +18,7 @@ const isDataDogSetup =
 export const stream = datadog.createWriteStreamSync({
   apiKey: process.env.DATADOG_API_KEY,
   ddsource: process.env.DATADOG_SOURCE,
-  ddtags: 'apollo',
+  ddtags: 'graphql:apollo',
   service: process.env.DATADOG_SERVICE,
   size: 1,
 })
