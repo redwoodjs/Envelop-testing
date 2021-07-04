@@ -38,6 +38,6 @@ export const stream = datadog.createWriteStreamSync({
  * @param {boolean} showConfig - whether to display logger configuration on initialization
  */
 export const logger = createLogger({
-  options: { level: 'info', prettyPrint: false },
+  options: { level: 'info', prettyPrint: !isDataDogSetup },
   destination: isDataDogSetup && stream,
 })

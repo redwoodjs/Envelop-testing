@@ -1,7 +1,11 @@
 [build]
-command = "yarn rw deploy netlify"
-publish = "web/dist"
-functions = "api/dist/functions"
+  command = "yarn rw deploy netlify"
+  publish = "web/dist"
+  functions = "api/dist/functions"
+[build.environment]
+  DATADOG_SOURCE = "netlify"
+  DATADOG_TAGS = "envelop"
+  DATADOG_SERVICE = "netlify-envelop"
 
 [dev]
   # To use [Netlify Dev](https://www.netlify.com/products/dev/),
@@ -14,18 +18,6 @@ functions = "api/dist/functions"
   targetPort = 8910
   # Point your browser to this port to access your RedwoodJS app
   port = 8888
-
-[context.netlify-apollo]
-[context.netlify-apollo.environment]
-  DATADOG_SOURCE = "netlify"
-  DATADOG_TAGS = "apollo"
-  DATADOG_SERVICE = "netlify-apollo"
-
-[context.netlify-envelop]
-[context.netlify-envelop.environment]
-  DATADOG_SOURCE = "netlify"
-  DATADOG_TAGS = "envelop"
-  DATADOG_SERVICE = "netlify-envelop"
 
 [[redirects]]
   from = "/*"
