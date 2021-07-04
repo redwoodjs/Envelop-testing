@@ -15,11 +15,17 @@ functions = "api/dist/functions"
   # Point your browser to this port to access your RedwoodJS app
   port = 8888
 
+[context.netlify-apollo]
 [context.netlify-apollo.environment]
   DATADOG_SOURCE = "netlify"
   DATADOG_TAGS = "apollo"
   DATADOG_SERVICE = "netlify-apollo"
 
+[context.netlify-envelop]
+[context.netlify-envelop.environment]
+  DATADOG_SOURCE = "netlify"
+  DATADOG_TAGS = "envelop"
+  DATADOG_SERVICE = "netlify-envelop"
 [[redirects]]
   from = "/*"
   to = "/index.html"
