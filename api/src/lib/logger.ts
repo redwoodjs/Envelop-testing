@@ -18,7 +18,7 @@ const isDataDogSetup =
 export const stream = datadog.createWriteStreamSync({
   apiKey: process.env.DATADOG_API_KEY,
   ddsource: process.env.DATADOG_SOURCE,
-  ddtags: process.env.DATADOG_TAGS,
+  ddtags: 'envelop',
   service: process.env.DATADOG_SERVICE,
   size: 1,
 })
