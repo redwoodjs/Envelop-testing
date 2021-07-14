@@ -5,35 +5,37 @@
 #####
 
 services:
-- name: redwoodjs-envelop-testing-web-envelop
-  type: web
-  env: static
-  buildCommand: yarn rw deploy render web
-  staticPublishPath: ./web/dist
-  envVars:
-  - key: NODE_VERSION
-    value: 14
-  routes:
-  - type: rewrite
-    source: /.redwood/functions/*
-#####
-# NOTE: replace destination api url after first deploy to Render
-# example:
-#   destination: https://myredwoodproject-api.onrender.com/*
-#####
-    destination: https://redwoodjs-envelop-testing-api-envelop.onrender.com/*
-  - type: rewrite
-    source: /*
-    destination: /index.html
+  - name: redwoodjs-envelop-testing-web-envelop
+    type: web
+    env: static
+    buildCommand: yarn rw deploy render web
+    staticPublishPath: ./web/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 14
+    routes:
+      - type: rewrite
+        source: /.redwood/functions/*
+        #####
+        # NOTE: replace destination api url after first deploy to Render
+        # example:
+        #   destination: https://myredwoodproject-api.onrender.com/*
+        #####
+        destination: https://redwoodjs-envelop-testing-api-envelop.onrender.com/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
 
-- name: redwoodjs-envelop-testing-api-envelop
-  type: web
-  env: node
-  region: oregon
-  buildCommand: yarn && yarn rw build api
-  startCommand: yarn rw deploy render api
-  envVars:
-  - key: NODE_VERSION
-    value: 14
-
-
+  - name: redwoodjs-envelop-testing-api-envelop
+    type: web
+    env: node
+    region: oregon
+    buildCommand: yarn && yarn rw build api
+    startCommand: yarn rw deploy render api
+    envVars:
+      - key: NODE_VERSION
+        value: 14
+      - key: DATADOG_SERVICE
+        value: envelop-testing
+      - key: DATADOG_SOURCE
+        value: render
